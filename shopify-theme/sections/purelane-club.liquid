@@ -1,0 +1,56 @@
+{% comment %}
+  PURELANE CLUB (Newsletter Signup)
+{% endcomment %}
+
+<section class="sec" data-scene="4" data-section-type="purelane-club" data-section-id="{{ section.id }}">
+  <div class="wrap">
+    <div class="glass signup rv">
+      <span class="kicker">{{ section.settings.kicker | default: 'Join the Purelane Club' }}</span>
+      <h2 class="d2" style="margin-top:12px">{{ section.settings.heading | default: 'Get ₹100 off your first bundle' }}</h2>
+      <p class="lede" style="margin:0 auto">{{ section.settings.body | default: 'Plus first access to new launches and restocks.' }}</p>
+      
+      {% form 'customer', class: 'purelane-newsletter-form' %}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <input type="email" name="contact[email]" placeholder="your@email.com" aria-label="Email address" required>
+        <button class="btn btn-primary" type="submit">{{ section.settings.button_label | default: 'Get my ₹100 off' }}</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Club",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Join the Purelane Club"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get \u20b9100 off your first bundle"
+    },
+    {
+      "type": "text",
+      "id": "body",
+      "label": "Body",
+      "default": "Plus first access to new launches and restocks."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button Label",
+      "default": "Get my \u20b9100 off"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Club"
+    }
+  ]
+}
+{% endschema %}

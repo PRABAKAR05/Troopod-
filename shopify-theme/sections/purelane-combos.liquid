@@ -1,0 +1,344 @@
+{% comment %}
+  PURELANE BEST-SELLING COMBOS SECTION
+  Each combo is a schema block with up to 3 product references.
+  CTA URL is merchant-configurable per block.
+{% endcomment %}
+
+<section
+  class="sec"
+  id="combos"
+  data-scene="3"
+  data-section-type="purelane-combos"
+  data-section-id="{{ section.id }}"
+>
+  <div class="wrap">
+    <div class="panel-head rv">
+      {%- if section.settings.kicker != blank -%}
+        <span class="kicker">{{ section.settings.kicker }}</span>
+      {%- endif -%}
+      <h2 class="d2" style="margin-top:12px">{{ section.settings.heading | default: 'Best selling combos' }}</h2>
+      <div class="rule"><i></i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg><i></i></div>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="lede" style="margin:14px auto 0">{{ section.settings.subtitle }}</p>
+      {%- endif -%}
+    </div>
+
+    <div class="comborail rv" role="list">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'combo' -%}
+          {%- assign pa = block.settings.product_a -%}
+          {%- assign pb = block.settings.product_b -%}
+          {%- assign pc = block.settings.product_c -%}
+          <article
+            class="glass combo{% if block.settings.featured %} hero-combo{% endif %}"
+            role="listitem"
+            {{ block.shopify_attributes }}
+          >
+            <div class="tray">
+              {%- if block.settings.save_label != blank -%}
+                <span class="save">{{ block.settings.save_label | escape }}</span>
+              {%- endif -%}
+              {%- if block.settings.flag_label != blank -%}
+                <span class="flag" aria-label="{{ block.settings.flag_label | escape }}">{{ block.settings.flag_label | escape }}</span>
+              {%- endif -%}
+              <div class="stack" aria-label="Products in this combo">
+                {%- comment -%} Product A {%- endcomment -%}
+                {%- if pa != blank or block.settings.label_a != blank -%}
+                  <span class="it">
+                    {%- if pa != blank and pa.featured_image -%}
+                      <img src="{{ pa.featured_image | image_url: width: 140 }}" alt="{{ pa.title | escape }}" width="66" height="66" loading="lazy" style="height:66px;width:auto;object-fit:contain;margin:0 auto 8px;display:block;filter:drop-shadow(0 5px 8px rgba(0,74,66,.13))">
+                    {%- else -%}
+                      {%- assign search_term = pa.type | default: block.settings.label_a | downcase -%}
+                      {%- if search_term contains 'kitchen' or search_term contains 'grease' -%}<span class="pimg p-kitchen" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'dish' -%}<span class="pimg p-dish" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'floor' -%}<span class="pimg p-floor" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'laundry' or search_term contains 'stains & odour' or search_term contains 'odour' -%}<span class="pimg p-laundry" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'toilet' or search_term contains 'germs' -%}<span class="pimg p-toilet" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'tap' or search_term contains 'hard water' or search_term contains 'limescale' -%}<span class="pimg p-tap" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'hand' or search_term contains 'hydration' -%}<span class="pimg p-handwash" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'machine' -%}<span class="pimg p-wm" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'scum' or search_term contains 'eraser' -%}<span class="pimg p-eraser" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- elsif search_term contains 'softens' -%}<span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg></span>
+                      {%- else -%}<span class="pimg p-kbtl" role="img" aria-label="{{ pa.title | default: block.settings.label_a | escape }}"></span>
+                      {%- endif -%}
+                    {%- endif -%}
+                    <span>{{ block.settings.label_a | default: pa.title | truncate: 26 }}</span>
+                  </span>
+                {%- endif -%}
+                {%- comment -%} Separator + Product B {%- endcomment -%}
+                {%- if pb != blank or block.settings.label_b != blank -%}
+                  <span class="plus" aria-hidden="true">+</span>
+                  <span class="it">
+                    {%- if pb != blank and pb.featured_image -%}
+                      <img src="{{ pb.featured_image | image_url: width: 140 }}" alt="{{ pb.title | escape }}" width="66" height="66" loading="lazy" style="height:66px;width:auto;object-fit:contain;margin:0 auto 8px;display:block;filter:drop-shadow(0 5px 8px rgba(0,74,66,.13))">
+                    {%- else -%}
+                      {%- assign search_term = pb.type | default: block.settings.label_b | downcase -%}
+                      {%- if search_term contains 'kitchen' or search_term contains 'grease' -%}<span class="pimg p-kitchen" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'dish' -%}<span class="pimg p-dish" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'floor' -%}<span class="pimg p-floor" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'laundry' or search_term contains 'stains & odour' or search_term contains 'odour' -%}<span class="pimg p-laundry" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'toilet' or search_term contains 'germs' -%}<span class="pimg p-toilet" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'tap' or search_term contains 'hard water' or search_term contains 'limescale' -%}<span class="pimg p-tap" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'hand' or search_term contains 'hydration' -%}<span class="pimg p-handwash" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'machine' -%}<span class="pimg p-wm" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'scum' or search_term contains 'eraser' -%}<span class="pimg p-eraser" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- elsif search_term contains 'softens' -%}<span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg></span>
+                      {%- else -%}<span class="pimg p-kbtl" role="img" aria-label="{{ pb.title | default: block.settings.label_b | escape }}"></span>
+                      {%- endif -%}
+                    {%- endif -%}
+                    <span>{{ block.settings.label_b | default: pb.title | truncate: 26 }}</span>
+                  </span>
+                {%- endif -%}
+                {%- comment -%} Separator + Product C {%- endcomment -%}
+                {%- if pc != blank or block.settings.label_c != blank -%}
+                  <span class="plus" aria-hidden="true">+</span>
+                  <span class="it">
+                    {%- if pc != blank and pc.featured_image -%}
+                      <img src="{{ pc.featured_image | image_url: width: 140 }}" alt="{{ pc.title | escape }}" width="66" height="66" loading="lazy" style="height:66px;width:auto;object-fit:contain;margin:0 auto 8px;display:block;filter:drop-shadow(0 5px 8px rgba(0,74,66,.13))">
+                    {%- else -%}
+                      {%- assign search_term = pc.type | default: block.settings.label_c | downcase -%}
+                      {%- if search_term contains 'kitchen' or search_term contains 'grease' -%}<span class="pimg p-kitchen" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'dish' -%}<span class="pimg p-dish" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'floor' -%}<span class="pimg p-floor" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'laundry' or search_term contains 'stains & odour' or search_term contains 'odour' -%}<span class="pimg p-laundry" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'toilet' or search_term contains 'germs' -%}<span class="pimg p-toilet" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'tap' or search_term contains 'hard water' or search_term contains 'limescale' -%}<span class="pimg p-tap" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'hand' or search_term contains 'hydration' -%}<span class="pimg p-handwash" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'machine' -%}<span class="pimg p-wm" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'scum' or search_term contains 'eraser' -%}<span class="pimg p-eraser" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- elsif search_term contains 'softens' -%}<span class="tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg></span>
+                      {%- else -%}<span class="pimg p-kbtl" role="img" aria-label="{{ pc.title | default: block.settings.label_c | escape }}"></span>
+                      {%- endif -%}
+                    {%- endif -%}
+                    <span>{{ block.settings.label_c | default: pc.title | truncate: 26 }}</span>
+                  </span>
+                {%- endif -%}
+              </div>
+            </div>
+            <div class="body">
+              <h3>{{ block.settings.title | escape }}</h3>
+              <div class="cnt">
+                {%- assign product_count = 0 -%}
+                {%- if pa != blank or block.settings.label_a != blank -%}{%- assign product_count = product_count | plus: 1 -%}{%- endif -%}
+                {%- if pb != blank or block.settings.label_b != blank -%}{%- assign product_count = product_count | plus: 1 -%}{%- endif -%}
+                {%- if pc != blank or block.settings.label_c != blank -%}{%- assign product_count = product_count | plus: 1 -%}{%- endif -%}
+                {%- if product_count == 3 and block.settings.title contains 'Complete home' -%}
+                  5 products
+                {%- else -%}
+                  {{ product_count }} product{% if product_count != 1 %}s{% endif %}
+                {%- endif -%}
+              </div>
+              {%- if block.settings.description != blank -%}
+                <p class="inc">{{ block.settings.description }}</p>
+              {%- endif -%}
+              <div class="prow">
+                <strong>{{ block.settings.price | default: '₹499' }}</strong>
+                {%- if block.settings.compare_price != blank -%}
+                  <s>{{ block.settings.compare_price }}</s>
+                {%- endif -%}
+                {%- if block.settings.saving_label != blank -%}
+                  <em>{{ block.settings.saving_label }}</em>
+                {%- endif -%}
+              </div>
+              <div class="fine">Inclusive of all taxes &middot; COD available</div>
+              <a
+                class="btn {% if block.settings.featured %}btn-primary{% else %}btn-ghost{% endif %}"
+                href="{{ block.settings.cta_url | default: '#' }}"
+              >
+                {{ block.settings.cta_label | default: 'Shop bundle' }}
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+              </a>
+            </div>
+          </article>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+
+    <div class="swipecue" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+      Swipe for more combos
+    </div>
+    {%- if section.settings.note != blank -%}
+      <p class="railnote">{{ section.settings.note }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Combos",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Pre-built to save you money"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Best selling combos"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own."
+    },
+    {
+      "type": "textarea",
+      "id": "note",
+      "label": "Footer note",
+      "default": "Tapping \"Shop bundle\" opens the bundle picker with these products already added."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "combo",
+      "name": "Combo",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Combo title",
+          "default": "Kitchen essentials"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description"
+        },
+        {
+          "type": "text",
+          "id": "save_label",
+          "label": "\"You save\" badge",
+          "default": "You save ₹398"
+        },
+        {
+          "type": "text",
+          "id": "flag_label",
+          "label": "Flag label (e.g. Most popular)"
+        },
+        {
+          "type": "checkbox",
+          "id": "featured",
+          "label": "Featured combo (gold border)",
+          "default": false
+        },
+        {
+          "type": "product",
+          "id": "product_a",
+          "label": "Product A"
+        },
+        {
+          "type": "text",
+          "id": "label_a",
+          "label": "Product A short label"
+        },
+        {
+          "type": "product",
+          "id": "product_b",
+          "label": "Product B (optional)"
+        },
+        {
+          "type": "text",
+          "id": "label_b",
+          "label": "Product B short label"
+        },
+        {
+          "type": "product",
+          "id": "product_c",
+          "label": "Product C (optional)"
+        },
+        {
+          "type": "text",
+          "id": "label_c",
+          "label": "Product C short label"
+        },
+        {
+          "type": "text",
+          "id": "price",
+          "label": "Bundle price",
+          "default": "₹499"
+        },
+        {
+          "type": "text",
+          "id": "compare_price",
+          "label": "Compare price"
+        },
+        {
+          "type": "text",
+          "id": "saving_label",
+          "label": "Saving label (e.g. Save ₹398)"
+        },
+        {
+          "type": "text",
+          "id": "cta_label",
+          "label": "CTA label",
+          "default": "Shop bundle"
+        },
+        {
+          "type": "url",
+          "id": "cta_url",
+          "label": "CTA URL",
+          "info": "Link to bundle product, collection, or page."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Combos",
+      "blocks": [
+        {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "save_label": "You save ₹398",
+            "flag_label": "Most popular",
+            "label_a": "Cuts grease instantly",
+            "label_b": "Squeaky clean dishes",
+            "label_c": "Melts hard water stains",
+            "price": "₹499",
+            "compare_price": "₹897",
+            "saving_label": "Save ₹398",
+            "description": "Everything for a sparkling kitchen, no need to pick separately."
+          }
+        },
+        {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "save_label": "You save ₹448",
+            "label_a": "Removes tough stains",
+            "label_b": "Softens every wash",
+            "label_c": "Deep-cleans your machine",
+            "price": "₹499",
+            "compare_price": "₹947",
+            "saving_label": "Save ₹448",
+            "description": "Softer, fresher wash, all in one box."
+          }
+        },
+        {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "save_label": "Biggest saving",
+            "flag_label": "Best value",
+            "featured": true,
+            "label_a": "Cuts grease instantly",
+            "label_b": "Kills 99.9% germs",
+            "label_c": "Gentle hydration",
+            "price": "₹799",
+            "compare_price": "₹1,495",
+            "saving_label": "Save ₹696",
+            "description": "Our biggest saving box. Kitchen, laundry, bathroom and hands covered."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

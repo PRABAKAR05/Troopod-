@@ -1,0 +1,109 @@
+{% comment %}
+  PURELANE PRODUCT CARD SNIPPET
+  Usage: {% render 'purelane-product-card', product: product %}
+  Handles all edge cases:
+  - Sold out products (disabled CTA)
+  - No-image products (placeholder)
+  - Very long titles (CSS clamp)
+  - Compare-at price absent (no discount shown)
+  - Unavailable products (sold out state)
+{% endcomment %}
+
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign is_available = product.available
+  assign has_compare = false
+  if product.compare_at_price > product.price
+    assign has_compare = true
+    assign discount_amount = product.compare_at_price | minus: product.price
+    assign discount_pct = discount_amount | times: 100 | divided_by: product.compare_at_price
+  endif
+  assign badge_label = product.type | default: ''
+  if product.tags contains 'bestseller'
+    assign badge_label = 'Bestseller'
+  elsif product.tags contains 'new'
+    assign badge_label = 'New'
+  endif
+-%}
+
+<article class="glass card rv" aria-label="{{ product.title | escape }}">
+  <a href="{{ product.url }}" class="shot" tabindex="-1" aria-hidden="true">
+    {%- if badge_label != blank -%}
+      <span class="pill">{{ badge_label | upcase }}</span>
+    {%- endif -%}
+
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 300 }}"
+        srcset="
+          {{ product.featured_image | image_url: width: 200 }} 200w,
+          {{ product.featured_image | image_url: width: 300 }} 300w,
+          {{ product.featured_image | image_url: width: 400 }} 400w
+        "
+        sizes="(max-width: 860px) 45vw, 250px"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        width="{{ product.featured_image.width }}"
+        height="{{ product.featured_image.height }}"
+        loading="lazy"
+        class=""
+        style="height:122px;width:auto;object-fit:contain;"
+      >
+    {%- else -%}
+      {%- comment -%} No-image fallback: SVG illustration based on product type {%- endcomment -%}
+      {%- assign ptype = product.type | downcase -%}
+      {%- if ptype contains 'kitchen' -%}
+        <span class="pimg p-kitchen" role="img" aria-label="{{ product.title | escape }}"></span>
+      {%- elsif ptype contains 'laundry' -%}
+        <span class="pimg p-laundry" role="img" aria-label="{{ product.title | escape }}"></span>
+      {%- elsif ptype contains 'floor' -%}
+        <span class="pimg p-floor" role="img" aria-label="{{ product.title | escape }}"></span>
+      {%- elsif ptype contains 'toilet' or ptype contains 'bathroom' -%}
+        <span class="pimg p-toilet" role="img" aria-label="{{ product.title | escape }}"></span>
+      {%- elsif ptype contains 'hand' -%}
+        <span class="pimg p-handwash" role="img" aria-label="{{ product.title | escape }}"></span>
+      {%- elsif ptype contains 'dish' -%}
+        <span class="pimg p-dish" role="img" aria-label="{{ product.title | escape }}"></span>
+      {%- else -%}
+        <span class="pimg p-kbtl" role="img" aria-label="{{ product.title | escape }}"></span>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- unless is_available -%}
+      <span class="pill" style="background:rgba(36,26,61,.72);border-color:rgba(36,26,61,.4);color:var(--paper-3)">Sold out</span>
+    {%- endunless -%}
+  </a>
+
+  <h4>
+    <a href="{{ product.url }}">{{ product.title | escape }}</a>
+  </h4>
+
+  <div class="rate" aria-label="4.8 out of 5 stars">
+    <b aria-hidden="true">&#9733; 4.8</b>
+    <span>({{ product.metafields.reviews.rating_count | default: '240' }})</span>
+  </div>
+
+  <div class="pr">
+    <strong>{{ product.price | money }}</strong>
+    {%- if has_compare -%}
+      <s aria-label="Original price {{ product.compare_at_price | money }}">{{ product.compare_at_price | money }}</s>
+      <em>{{ discount_pct }}% off</em>
+    {%- endif -%}
+  </div>
+
+  {%- if is_available -%}
+    {%- form 'product', product, id: product.handle -%}
+      <input type="hidden" name="id" value="{{ current_variant.id }}">
+      <button
+        type="submit"
+        name="add"
+        class="btn btn-primary btn-sm"
+        aria-label="Add {{ product.title | escape }} to cart"
+      >
+        Add to cart
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h2l2.2 10.4a1.6 1.6 0 0 0 1.6 1.3h7.6a1.6 1.6 0 0 0 1.6-1.3L20.5 9H6.4"/><circle cx="10" cy="20.5" r="1.1"/><circle cx="17.5" cy="20.5" r="1.1"/></svg>
+      </button>
+    {%- endform -%}
+  {%- else -%}
+    <button class="btn btn-ghost btn-sm" disabled aria-disabled="true">Sold out</button>
+  {%- endif -%}
+</article>

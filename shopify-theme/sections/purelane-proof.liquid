@@ -1,0 +1,87 @@
+{% comment %}
+  PURELANE PROOF SECTION (Tough on grime... + Rotator + Stats)
+{% endcomment %}
+
+<section class="sec" id="proof" data-scene="3" data-section-type="purelane-proof" data-section-id="{{ section.id }}">
+  <div class="wrap">
+    <div class="glass sec-pad rv">
+      <div class="proof">
+        <div class="proof-l">
+          <span class="kicker">{{ section.settings.kicker | default: 'Why it works' }}</span>
+          <h2 class="d2" style="margin-top:12px">{{ section.settings.heading | default: 'Tough on grime.<br>Gentle on everything else.' }}</h2>
+          <p class="body-s" style="max-width:40ch">{{ section.settings.body | default: 'Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for.' }}</p>
+          <a class="btn btn-primary" href="#ingredients">See the ingredient list
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13m-5-6 6 6-6 6"/></svg>
+          </a>
+        </div>
+        <div class="glass-2 rot purelane-rot" id="rot" aria-hidden="true">
+          <div class="frame">
+            <span class="pimg p-kitchen on" role="img" aria-label="Purelane foaming kitchen cleaner" data-name="Kitchen cleaner" data-note="Foam lifts grease, no scrubbing"></span>
+            <span class="pimg p-tap" role="img" aria-label="Purelane tap cleaner and limescale remover" data-name="Tap &amp; limescale" data-note="Melts hard water stains"></span>
+            <span class="pimg p-laundry" role="img" aria-label="Purelane non-toxic laundry detergent" data-name="Laundry detergent" data-note="Tough on odour, soft on fabric"></span>
+            <span class="pimg p-toilet" role="img" aria-label="Purelane non-toxic toilet cleaner" data-name="Toilet cleaner" data-note="Kills 99.9% of germs"></span>
+            <span class="pimg p-floor" role="img" aria-label="Purelane natural herbal floor cleaner" data-name="Floor cleaner" data-note="Neem powered, pet safe"></span>
+            <span class="pimg p-dish" role="img" aria-label="Purelane organic dishwash liquid gel" data-name="Dishwash gel" data-note="Cuts grease, kind to hands"></span>
+          </div>
+          <div class="cap"><b>Kitchen cleaner</b><span>Foam lifts grease, no scrubbing</span></div>
+          <div class="dots"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      
+      <div class="glass-2 stats proof-stats" style="grid-column:1/-1">
+        <div class="stat">
+          <div class="ring">99.9%</div>
+          <h5>Germ kill</h5>
+          <p>Tested against germs and bacteria</p>
+        </div>
+        <div class="stat">
+          <div class="ring">0%</div>
+          <h5>Sulphates</h5>
+          <p>No SLS, chlorine or parabens</p>
+        </div>
+        <div class="stat">
+          <div class="ring">100%</div>
+          <h5>Plant based</h5>
+          <p>Cleansers derived from plants</p>
+        </div>
+        <div class="stat">
+          <div class="ring">4.8</div>
+          <h5>Rated</h5>
+          <p>Across 8,000+ verified reviews</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Proof",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker",
+      "default": "Why it works"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Tough on grime.<br>Gentle on everything else."
+    },
+    {
+      "type": "textarea",
+      "id": "body",
+      "label": "Body",
+      "default": "Every formula is built on plant-derived cleansers and essential oils. It behaves exactly like the cleaner you are used to, minus the things you never signed up for."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Proof"
+    }
+  ]
+}
+{% endschema %}

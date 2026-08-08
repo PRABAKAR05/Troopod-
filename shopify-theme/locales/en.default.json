@@ -1,0 +1,13 @@
+{
+  "en": {
+    "general": {
+      "page_not_found": "Page not found"
+    },
+    "cart": {
+      "add_to_cart": "Add to cart",
+      "sold_out": "Sold out",
+      "empty": "Your cart is empty",
+      "total": "Total"
+    }
+  }
+}

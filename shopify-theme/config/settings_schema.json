@@ -1,0 +1,53 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Purelane",
+    "theme_version": "1.0.0",
+    "theme_author": "Purelane",
+    "theme_documentation_url": "https://help.shopify.com",
+    "theme_support_url": "https://help.shopify.com"
+  },
+  {
+    "name": "Colors",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Accent color (gold)",
+        "default": "#b8701c"
+      },
+      {
+        "type": "color",
+        "id": "color_green",
+        "label": "Green / eco color",
+        "default": "#4f7d10"
+      },
+      {
+        "type": "color",
+        "id": "color_teal",
+        "label": "CTA / primary button color",
+        "default": "#00706a"
+      }
+    ]
+  },
+  {
+    "name": "Social media",
+    "settings": [
+      {
+        "type": "url",
+        "id": "social_instagram_link",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube_link",
+        "label": "YouTube"
+      }
+    ]
+  }
+]

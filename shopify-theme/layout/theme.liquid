@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="theme-color" content="#eee7fb">
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  {{ content_for_header }}
+
+  {{ 'purelane.css' | asset_url | stylesheet_tag }}
+</head>
+
+<body>
+
+  {%- comment -%} ===== FIXED BACKGROUND SCENES + WATER ===== {%- endcomment -%}
+  <div class="purelane-scenes" id="purelane-scenes" data-d="1" aria-hidden="true">
+    <div class="purelane-scene purelane-s1 on"></div>
+    <div class="purelane-scene purelane-s2"></div>
+    <div class="purelane-scene purelane-s3"></div>
+    <div class="purelane-scene purelane-s4"></div>
+
+    <div class="purelane-water" id="purelane-water">
+      {%- comment -%} Water layer A — drifting waves {%- endcomment -%}
+      <div class="purelane-wl purelane-wl-a">
+        <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="pl-cg-a" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0"   stop-color="#eafff4" stop-opacity="0"/>
+              <stop offset=".18" stop-color="#f2fff8" stop-opacity=".95"/>
+              <stop offset=".5"  stop-color="#ffffff" stop-opacity="1"/>
+              <stop offset=".82" stop-color="#e6fbef" stop-opacity=".9"/>
+              <stop offset="1"   stop-color="#eafff4" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g>
+            <path d="M262 230 Q372 261 482 238 Q592 247 702 250 Q812 210 923 235 Q1033 201 1143 213 Q1253 232 1363 215 Q1473 261 1583 238 Q1694 248 1804 250" stroke="url(#pl-cg-a)" stroke-width="1.7" fill="none" opacity="0.45" stroke-linecap="round"/>
+            <path d="M137 256 Q307 242 477 258 Q646 238 816 245 Q985 259 1155 247 Q1324 277 1494 262 Q1664 267 1833 269" stroke="url(#pl-cg-a)" stroke-width="5.1" fill="none" opacity="0.23" stroke-linecap="round"/>
+            <path d="M389 715 Q514 756 639 725 Q763 738 888 742 Q1013 688 1138 721 Q1262 674 1387 692 Q1512 716 1636 694 Q1761 756 1886 724" stroke="url(#pl-cg-a)" stroke-width="5.7" fill="none" opacity="0.37" stroke-linecap="round"/>
+            <path d="M140 308 Q297 310 454 302 Q611 321 769 312 Q926 314 1083 316 Q1240 298 1397 309 Q1555 295 1712 300" stroke="url(#pl-cg-a)" stroke-width="5.5" fill="none" opacity="0.47" stroke-linecap="round"/>
+            <path d="M570 422 Q687 462 805 437 Q922 436 1039 446 Q1156 391 1274 423 Q1391 388 1508 398 Q1625 432 1742 406" stroke="url(#pl-cg-a)" stroke-width="2.3" fill="none" opacity="0.25" stroke-linecap="round"/>
+            <path d="M229 990 Q390 1026 551 1018 Q712 974 873 1006 Q1034 944 1195 972 Q1356 977 1517 963 Q1678 1028 1839 991" stroke="url(#pl-cg-a)" stroke-width="6.1" fill="none" opacity="0.36" stroke-linecap="round"/>
+            <path d="M183 850 Q321 853 459 872 Q597 811 735 843 Q873 822 1011 823 Q1149 870 1287 839 Q1425 890 1563 870" stroke="url(#pl-cg-a)" stroke-width="2.8" fill="none" opacity="0.20" stroke-linecap="round"/>
+            <path d="M51 390 Q154 420 258 394 Q361 414 465 411 Q568 376 672 400 Q776 357 879 376 Q983 384 1086 371 Q1190 419 1293 393 Q1397 415 1500 411" stroke="url(#pl-cg-a)" stroke-width="4.7" fill="none" opacity="0.42" stroke-linecap="round"/>
+            <path d="M124 765 Q223 775 322 791 Q421 725 520 761 Q619 730 718 736 Q816 782 915 750 Q1014 811 1113 784 Q1212 776 1311 792" stroke="url(#pl-cg-a)" stroke-width="3.6" fill="none" opacity="0.28" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+
+      {%- comment -%} Water layer B — hidden on mobile {%- endcomment -%}
+      <div class="purelane-wl purelane-wl-b">
+        <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="pl-cg-b" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0"   stop-color="#eafff4" stop-opacity="0"/>
+              <stop offset=".18" stop-color="#f2fff8" stop-opacity=".95"/>
+              <stop offset=".5"  stop-color="#ffffff" stop-opacity="1"/>
+              <stop offset=".82" stop-color="#e6fbef" stop-opacity=".9"/>
+              <stop offset="1"   stop-color="#eafff4" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g>
+            <path d="M355 217 Q442 234 529 234 Q616 202 703 222 Q790 190 877 203 Q964 215 1051 202 Q1138 242 1225 221 Q1312 235 1399 234" stroke="url(#pl-cg-b)" stroke-width="3.4" fill="none" opacity="0.17" stroke-linecap="round"/>
+            <path d="M160 723 Q278 720 396 713 Q514 738 633 725 Q751 735 869 734 Q987 715 1105 728 Q1223 706 1341 715" stroke="url(#pl-cg-b)" stroke-width="1.1" fill="none" opacity="0.17" stroke-linecap="round"/>
+            <path d="M270 848 Q346 834 422 834 Q497 859 573 843 Q648 868 724 858 Q800 850 875 859 Q951 828 1027 844 Q1102 833 1178 834" stroke="url(#pl-cg-b)" stroke-width="3.2" fill="none" opacity="0.34" stroke-linecap="round"/>
+            <path d="M167 54 Q314 77 461 71 Q608 46 755 64 Q901 26 1048 44 Q1195 44 1342 37 Q1488 75 1635 53" stroke="url(#pl-cg-b)" stroke-width="1.5" fill="none" opacity="0.24" stroke-linecap="round"/>
+            <path d="M138 476 Q281 475 424 487 Q567 454 710 471 Q853 463 996 462 Q1139 490 1282 472 Q1425 498 1568 488" stroke="url(#pl-cg-b)" stroke-width="1.5" fill="none" opacity="0.16" stroke-linecap="round"/>
+          </g>
+        </svg>
+      </div>
+
+      {%- comment -%} Water layer C — light shafts {%- endcomment -%}
+      <div class="purelane-wl purelane-wl-c">
+        <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="pl-sg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0"   stop-color="#f4fff9" stop-opacity=".85"/>
+              <stop offset=".38" stop-color="#dcf6e7" stop-opacity=".28"/>
+              <stop offset="1"   stop-color="#d4f2e2" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g>
+            <polygon points="95,-80 152,-80 517,1180 439,1180"    fill="url(#pl-sg)" opacity="0.26"/>
+            <polygon points="433,-80 491,-80 885,1180 807,1180"   fill="url(#pl-sg)" opacity="0.41"/>
+            <polygon points="751,-80 919,-80 1180,1180 953,1180"  fill="url(#pl-sg)" opacity="0.31"/>
+            <polygon points="1048,-80 1135,-80 1400,1180 1282,1180" fill="url(#pl-sg)" opacity="0.28"/>
+            <polygon points="1366,-80 1520,-80 1898,1180 1690,1180" fill="url(#pl-sg)" opacity="0.28"/>
+            <polygon points="1695,-80 1808,-80 2067,1180 1914,1180" fill="url(#pl-sg)" opacity="0.35"/>
+          </g>
+        </svg>
+      </div>
+
+      {%- comment -%} Water layer S — surface shimmer {%- endcomment -%}
+      <div class="purelane-wl purelane-wl-s">
+        <svg class="sv" viewBox="0 0 1800 1100" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="pl-sf" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0"   stop-color="#ffffff" stop-opacity=".55"/>
+              <stop offset=".55" stop-color="#e8fff2" stop-opacity=".16"/>
+              <stop offset="1"   stop-color="#e8fff2" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <g>
+            <rect x="-100" y="-40" width="2000" height="150" fill="url(#pl-sf)"/>
+            <rect x="-100" y="60"  width="2000" height="60"  fill="url(#pl-sf)" opacity=".5"/>
+          </g>
+        </svg>
+      </div>
+
+      {%- comment -%} Bubbles {%- endcomment -%}
+      <div class="purelane-bub" aria-hidden="true">
+        <span style="--x:91.9%;--s:6.7px;--dur:21.5s;--dly:19.0s;--drift:-11px"></span>
+        <span style="--x:43.4%;--s:5.7px;--dur:26.8s;--dly:16.1s;--drift:-11px"></span>
+        <span style="--x:96.6%;--s:6.2px;--dur:13.7s;--dly:10.3s;--drift:38px"></span>
+        <span style="--x:6.0%;--s:3.6px;--dur:24.4s;--dly:10.6s;--drift:3px"></span>
+        <span style="--x:70.3%;--s:3.3px;--dur:20.9s;--dly:9.2s;--drift:-39px"></span>
+        <span style="--x:67.7%;--s:4.0px;--dur:27.0s;--dly:16.5s;--drift:-5px"></span>
+        <span style="--x:2.1%;--s:7.1px;--dur:22.0s;--dly:3.1s;--drift:-37px"></span>
+        <span style="--x:69.4%;--s:8.1px;--dur:21.9s;--dly:10.7s;--drift:-24px"></span>
+        <span style="--x:64.1%;--s:8.2px;--dur:17.3s;--dly:9.0s;--drift:2px"></span>
+        <span style="--x:21.8%;--s:7.1px;--dur:15.7s;--dly:18.4s;--drift:-13px"></span>
+        <span style="--x:61.9%;--s:6.6px;--dur:26.3s;--dly:7.2s;--drift:-23px"></span>
+        <span style="--x:45.9%;--s:8.9px;--dur:24.3s;--dly:7.2s;--drift:20px"></span>
+        <span style="--x:52.5%;--s:3.3px;--dur:20.2s;--dly:19.6s;--drift:-31px"></span>
+        <span style="--x:11.1%;--s:7.9px;--dur:20.4s;--dly:10.8s;--drift:-40px"></span>
+        <span style="--x:7.6%;--s:6.4px;--dur:19.5s;--dly:0.2s;--drift:-26px"></span>
+        <span style="--x:18.6%;--s:9.0px;--dur:24.5s;--dly:8.7s;--drift:13px"></span>
+      </div>
+    </div>
+
+    <div class="purelane-vig"></div>
+  </div>
+
+  {%- comment -%} ===== ANNOUNCEMENT BAR ===== {%- endcomment -%}
+  {% sections 'purelane-announcement' %}
+
+  {%- comment -%} ===== NAVIGATION ===== {%- endcomment -%}
+  <header class="purelane-header" id="purelane-hdr">
+    <div class="purelane-navpill glass">
+      <a class="purelane-brand" href="{{ routes.root_url }}" aria-label="{{ shop.name }} home">
+        <span class="mark">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#b8701c">
+            <path d="M12 3 20.5 8v8L12 21 3.5 16V8L12 3Z"/>
+            <path d="M12 12 20.5 8M12 12v9M12 12 3.5 8"/>
+          </svg>
+        </span>
+        <span class="txt">
+          <span class="n1">Purelane</span>
+          <span class="n2">Clean, simply</span>
+        </span>
+      </a>
+
+      <nav class="purelane-nav" aria-label="Main navigation">
+        <a href="#top">Home</a>
+        <a href="#ingredients">Ingredients</a>
+        <a href="#how">How it works</a>
+        <a href="#combos">Shop</a>
+        <a href="#whybundles">Bundles</a>
+      </nav>
+
+      <div class="purelane-navtools">
+        <a href="{{ routes.search_url }}" class="purelane-ico hide-s" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        </a>
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}" class="purelane-ico hide-s" aria-label="{%- if customer -%}Account{%- else -%}Login{%- endif -%}">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 20c0-3.6 3.1-5.6 7-5.6s7 2 7 5.6"/></svg>
+        </a>
+        <a href="{{ routes.cart_url }}" class="purelane-ico" aria-label="Cart, {{ cart.item_count }} items">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h2l2.2 10.4a1.6 1.6 0 0 0 1.6 1.3h7.6a1.6 1.6 0 0 0 1.6-1.3L20.5 9H6.4"/><circle cx="10" cy="20.5" r="1.1"/><circle cx="17.5" cy="20.5" r="1.1"/></svg>
+          {%- if cart.item_count > 0 -%}
+            <span class="purelane-dot" aria-hidden="true">{{ cart.item_count }}</span>
+          {%- endif -%}
+        </a>
+        <button class="purelane-ico purelane-burger" aria-label="Menu" aria-expanded="false" aria-controls="purelane-mobile-menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  {%- comment -%} ===== SIDE RAIL ===== {%- endcomment -%}
+  <nav class="purelane-rail" aria-label="Section progress">
+    <a href="#top"         class="on" aria-label="Hero"></a>
+    <a href="#ingredients"           aria-label="Ingredients"></a>
+    <a href="#how"                   aria-label="How it works"></a>
+    <a href="#proof"                 aria-label="Why it works"></a>
+    <a href="#combos"                aria-label="Combos"></a>
+    <a href="#shop"                  aria-label="Shop"></a>
+    <a href="#reviews"               aria-label="Reviews"></a>
+  </nav>
+
+  <main id="top">
+    {{ content_for_layout }}
+  </main>
+
+  {%- comment -%} ===== FOOTER ===== {%- endcomment -%}
+  <footer class="purelane-footer" data-scene="4">
+    <div class="wrap">
+      <div class="fgrid">
+        <div class="fcol">
+          <a class="purelane-brand" href="{{ routes.root_url }}" style="margin-bottom:16px">
+            <span class="mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color:#b8701c">
+                <path d="M12 3 20.5 8v8L12 21 3.5 16V8L12 3Z"/>
+                <path d="M12 12 20.5 8M12 12v9M12 12 3.5 8"/>
+              </svg>
+            </span>
+            <span class="txt"><span class="n1">Purelane</span><span class="n2">Clean, simply</span></span>
+          </a>
+          <p style="max-width:30ch">Effective cleaning, powered by nature. Made for Indian homes since day one.</p>
+        </div>
+        {%- for block in linklists['footer-shop'].links -%}
+          {%- unless forloop.first -%}{%- endunless -%}
+        {%- endfor -%}
+        <div class="fcol">
+          <h5>Shop</h5>
+          <a href="#combos">Bestsellers</a>
+          <a href="#combos">Kitchen</a>
+          <a href="#combos">Laundry</a>
+          <a href="#combos">Home</a>
+          <a href="#combos">Skin</a>
+          <a href="#whybundles">Starter kits</a>
+        </div>
+        <div class="fcol">
+          <h5>About</h5>
+          <a href="#how">How it works</a>
+          <a href="#ingredients">Sustainability</a>
+          <a href="#proof">FAQs</a>
+          <a href="#reviews">Reviews</a>
+        </div>
+        <div class="fcol">
+          <h5>Get in touch</h5>
+          <a href="mailto:{{ shop.email }}">{{ shop.email }}</a>
+          {%- if shop.phone -%}<a href="tel:{{ shop.phone }}">{{ shop.phone }}</a>{%- endif -%}
+          <p style="font-size:12px;color:rgba(36,26,61,.42)">{{ shop.name }}</p>
+        </div>
+      </div>
+      <div class="fbot">
+        <span>© {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+        <span>
+          <a href="/policies/privacy-policy">Privacy</a> ·
+          <a href="/policies/terms-of-service">Terms</a> ·
+          <a href="/policies/refund-policy">Refunds</a> ·
+          <a href="{{ routes.contact_url }}">Contact</a>
+        </span>
+      </div>
+    </div>
+  </footer>
+
+  {%- comment -%} ===== STICKY CTA (mobile only) ===== {%- endcomment -%}
+  <div class="purelane-sticky" role="complementary" aria-label="Quick shop">
+    <span class="lbl">
+      <b>Pick any 3, pay ₹499</b>
+      <span>Free shipping, always</span>
+    </span>
+    <a class="btn btn-primary btn-sm" href="#combos">Build bundle</a>
+  </div>
+
+  {{ 'purelane.js' | asset_url | script_tag }}
+</body>
+</html>

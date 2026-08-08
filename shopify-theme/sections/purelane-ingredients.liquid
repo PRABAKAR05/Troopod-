@@ -1,0 +1,113 @@
+{% comment %}
+  PURELANE INGREDIENTS SECTION (Sourced from nature)
+{% endcomment %}
+
+<section class="sec" id="ingredients" data-scene="2" data-section-type="purelane-ingredients" data-section-id="{{ section.id }}">
+  <div class="wrap">
+    <div class="glass sec-pad rv">
+      <div class="panel-head">
+        <h2 class="d2">{{ section.settings.heading | default: 'Sourced from nature' }}</h2>
+        <div class="rule">
+          <i></i>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21c0-6.5 3.5-11 8-12.5C20 15 16.5 20 12 21Z"/><path d="M12 21C12 14.5 8.5 10 4 8.5 4 15 7.5 20 12 21Z"/></svg>
+          <i></i>
+        </div>
+      </div>
+      <div class="ing">
+        <div class="ing-i">
+          <div class="art">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="50" cy="62" r="25"/>
+              <path d="M31 53c9-6 29-6 38 0" stroke="#f0a03c"/>
+              <path d="M41 63c4 8 14 8 18 0" opacity=".55"/>
+              <path d="M50 37V25"/>
+              <path d="M50 27C42 18 30 16 21 21c5 10 17 13 29 6Z" stroke="#f0a03c"/>
+              <path d="M50 27c8-9 20-11 29-6-5 10-17 13-29 6Z" stroke="#f0a03c"/>
+            </svg>
+          </div>
+          <h4>Coconut</h4>
+          <p>Plant-derived cleansers that lift grease</p>
+        </div>
+        <div class="ing-i">
+          <div class="art">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="45" cy="58" r="23"/>
+              <path d="M45 35v46M22 58h46" opacity=".4"/>
+              <path d="M29 42 61 74M61 42 29 74" opacity=".26"/>
+              <path d="M62 28c13-1 20 10 15 20-4 8-15 9-19 2" stroke="#f0a03c"/>
+              <path d="M45 34c-3-8 2-15 10-16 1 9-3 15-10 16Z" stroke="#f0a03c"/>
+            </svg>
+          </div>
+          <h4>Orange peel</h4>
+          <p>Natural degreaser and fresh citrus lift</p>
+        </div>
+        <div class="ing-i">
+          <div class="art">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="36" cy="66" r="16"/>
+              <circle cx="64" cy="69" r="14"/>
+              <circle cx="50" cy="43" r="14"/>
+              <path d="M50 29V17"/>
+              <path d="M50 21c-8-8-18-8-23-2 7 8 17 10 23 2Z" stroke="#f0a03c"/>
+              <path d="M31 60a5 5 0 0 1 4-4" opacity=".6"/>
+              <path d="M46 38a5 5 0 0 1 4-4" opacity=".6"/>
+            </svg>
+          </div>
+          <h4>Soap nut</h4>
+          <p>A traditional plant foaming agent</p>
+        </div>
+        <div class="ing-i">
+          <div class="art">
+            <svg viewBox="0 0 100 100" fill="none" stroke="#ece6f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 82C36 66 58 44 82 20" stroke="#f0a03c"/>
+              <path d="M27 73c-6-7-4-15 3-18 4 7 3 14-3 18Z"/>
+              <path d="M31 69c8-4 15 0 16 8-8 2-14-1-16-8Z"/>
+              <path d="M41 59c-6-7-4-16 3-19 4 7 3 15-3 19Z"/>
+              <path d="M45 55c9-4 16 0 17 8-8 2-15-1-17-8Z"/>
+              <path d="M56 44c-6-7-4-16 3-19 4 7 3 15-3 19Z"/>
+              <path d="M60 40c9-4 16 0 17 8-8 2-15-1-17-8Z"/>
+              <path d="M70 30c-5-7-3-15 4-18 3 7 2 14-4 18Z"/>
+            </svg>
+          </div>
+          <h4>Neem</h4>
+          <p>Time-tested antibacterial from the tree</p>
+        </div>
+        <div class="ing-i">
+          <div class="art">
+            <svg viewBox="0 0 100 100" fill="none">
+              <g fill="#ece6f7" opacity=".88">
+                <path d="M50 88C44 62 39 42 24 15c15 27 22 47 29 73Z"/>
+                <path d="M52 88C50 60 50 39 44 9c11 29 13 50 12 79Z"/>
+                <path d="M54 88C56 60 60 40 74 13c-11 28-15 48-16 75Z"/>
+                <path d="M56 88C60 64 68 48 86 27c-14 22-21 38-26 61Z"/>
+                <path d="M48 88C44 66 36 50 18 30c14 21 22 36 27 58Z"/>
+              </g>
+              <path d="M50 88h6" stroke="#f0a03c" stroke-width="2.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <h4>Lemongrass</h4>
+          <p>Clean fragrance with nothing synthetic</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Ingredients",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Sourced from nature"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Ingredients"
+    }
+  ]
+}
+{% endschema %}

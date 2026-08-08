@@ -1,0 +1,41 @@
+{% comment %}
+  PURELANE ANNOUNCEMENT TICKER
+{% endcomment %}
+<div class="purelane-ticker" role="marquee" aria-label="Announcements">
+  <div class="track">
+    {%- assign items = section.settings.ticker_text | newline_to_br | split: '<br />' -%}
+    {%- for item in items -%}
+      {%- if item != blank -%}
+        <span>{{ item | strip_html | strip }}</span>
+        <b aria-hidden="true">·</b>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- comment -%} Duplicate for infinite scroll {%- endcomment -%}
+    {%- for item in items -%}
+      {%- if item != blank -%}
+        <span>{{ item | strip_html | strip }}</span>
+        <b aria-hidden="true">·</b>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Ticker",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "ticker_text",
+      "label": "Ticker items (one per line)",
+      "default": "🌿 Pick Any 3, Pay ₹499\nFree Shipping on All Orders\n✓ 8,00,000+ Happy Homes\n🇮🇳 Made in India — Loved in India\nNo Sulphates · No Chlorine · No Compromise"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Ticker"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,14 @@
+{% layout none %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Gift Card</title>
+</head>
+<body>
+  <h1>Here is your gift card!</h1>
+  <p>Code: {{ gift_card.code | format_code }}</p>
+  <p>Balance: {{ gift_card.balance | money }}</p>
+</body>
+</html>

@@ -1,0 +1,171 @@
+{
+  "sections": {
+    "announcement": {
+      "type": "purelane-announcement",
+      "settings": {}
+    },
+    "hero": {
+      "type": "purelane-hero",
+      "blocks": {
+        "badge-0": {
+          "type": "badge",
+          "settings": { "icon": "leaf", "label": "Plant\npowered" }
+        },
+        "badge-1": {
+          "type": "badge",
+          "settings": { "icon": "shield", "label": "Safe for\nkids & pets" }
+        },
+        "badge-2": {
+          "type": "badge",
+          "settings": { "icon": "cross", "label": "Zero harsh\nchemicals" }
+        },
+        "slide-0": {
+          "type": "slide",
+          "settings": {
+            "label": "Single bottle",
+            "price": "\u20b9200",
+            "compare_price": "\u20b9299",
+            "saving": "33% off"
+          }
+        },
+        "slide-1": {
+          "type": "slide",
+          "settings": {
+            "label": "Any 2 products",
+            "price": "\u20b9349",
+            "compare_price": "\u20b9598",
+            "saving": "Save \u20b9249"
+          }
+        },
+        "slide-2": {
+          "type": "slide",
+          "settings": {
+            "label": "Any 3 products",
+            "price": "\u20b9499",
+            "compare_price": "\u20b9897",
+            "saving": "Save \u20b9398"
+          }
+        }
+      },
+      "block_order": ["badge-0", "badge-1", "badge-2", "slide-0", "slide-1", "slide-2"],
+      "settings": {
+        "heading_line_1": "Clean",
+        "heading_line_2": "That",
+        "heading_accent": "Lasts",
+        "lede": "Homecare that works on the toughest grime, made from plants. Kind to your home, your family and the world outside it.",
+        "cta_primary_label": "Shop now",
+        "cta_secondary_label": "How it works"
+      }
+    },
+    "reviews": {
+      "type": "purelane-reviews",
+      "blocks": {
+        "r0": { "type": "review", "settings": { "rating": 5, "title": "Works like a charm", "body": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.", "reviewer": "Anita", "product_label": "Laundry detergent" } },
+        "r1": { "type": "review", "settings": { "rating": 5, "title": "Best dishwash ever", "body": "Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.", "reviewer": "Priya", "product_label": "Dishwash gel" } },
+        "r2": { "type": "review", "settings": { "rating": 5, "title": "Great product, great packaging", "body": "Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.", "reviewer": "Sunita", "product_label": "Liquid handwash" } },
+        "r3": { "type": "review", "settings": { "rating": 5, "title": "Dog friendly", "body": "We switched because chemical floor cleaners were setting off my dog's allergies. No reactions since.", "reviewer": "Rohit S.", "product_label": "Floor cleaner" } },
+        "r4": { "type": "review", "settings": { "rating": 5, "title": "Sparkling taps again", "body": "Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off.", "reviewer": "Verified buyer", "product_label": "Tap cleaner" } }
+      },
+      "block_order": ["r0", "r1", "r2", "r3", "r4"],
+      "settings": {
+        "kicker": "That's what they said",
+        "aggregate_rating": "4.8",
+        "review_count": "8,000+",
+        "homes_count": "12 lakh+"
+      }
+    },
+
+    "combos": {
+      "type": "purelane-combos",
+      "blocks": {
+        "c0": {
+          "type": "combo",
+          "settings": {
+            "title": "Kitchen essentials",
+            "save_label": "You save \u20b9398",
+            "flag_label": "Most popular",
+            "label_a": "Cuts grease instantly",
+            "label_b": "Squeaky clean dishes",
+            "label_c": "Melts hard water stains",
+            "price": "\u20b9499",
+            "compare_price": "\u20b9897",
+            "saving_label": "Save \u20b9398",
+            "description": "Everything for a sparkling kitchen, no need to pick separately."
+          }
+        },
+        "c1": {
+          "type": "combo",
+          "settings": {
+            "title": "Laundry care bundle",
+            "save_label": "You save \u20b9448",
+            "label_a": "Removes tough stains",
+            "label_b": "Softens every wash",
+            "label_c": "Deep-cleans your machine",
+            "price": "\u20b9499",
+            "compare_price": "\u20b9947",
+            "saving_label": "Save \u20b9448",
+            "description": "Softer, fresher wash, all in one box."
+          }
+        },
+        "c2": {
+          "type": "combo",
+          "settings": {
+            "title": "Complete home bundle",
+            "save_label": "Biggest saving",
+            "flag_label": "Best value",
+            "featured": true,
+            "label_a": "Cuts grease instantly",
+            "label_b": "Kills 99.9% germs",
+            "label_c": "Gentle hydration",
+            "price": "\u20b9799",
+            "compare_price": "\u20b91,495",
+            "saving_label": "Save \u20b9696",
+            "description": "Our biggest saving box. Kitchen, laundry, bathroom and hands covered."
+          }
+        },
+        "c3": {
+          "type": "combo",
+          "settings": {
+            "title": "Bathroom deep clean",
+            "save_label": "You save \u20b9398",
+            "label_a": "Kills 99.9% germs",
+            "label_b": "Melts hard water stains",
+            "label_c": "Scrubs away soap scum",
+            "price": "\u20b9499",
+            "compare_price": "\u20b9897",
+            "saving_label": "Save \u20b9398",
+            "description": "Includes: Toilet Cleaner, Tap Cleaner & Magic Eraser. A complete bathroom refresh in one box."
+          }
+        },
+        "c4": {
+          "type": "combo",
+          "settings": {
+            "title": "Hard water solution kit",
+            "save_label": "You save \u20b9249",
+            "label_a": "Melts hard water stains",
+            "label_b": "Fights limescale in the bowl",
+            "price": "\u20b9349",
+            "compare_price": "\u20b9598",
+            "saving_label": "Save \u20b9249",
+            "description": "Includes: Tap Cleaner & Toilet Cleaner. A quick, focused fix for hard water stains across the home."
+          }
+        }
+      },
+      "block_order": ["c0", "c1", "c2", "c3", "c4"],
+      "settings": {
+        "kicker": "Pre-built to save you money",
+        "heading": "Best selling combos",
+        "subtitle": "Swipe through the boxes people order most. Each one is already priced below buying the same products on their own."
+      }
+    },
+
+    "ingredients": { "type": "purelane-ingredients", "settings": {} },
+    "pillars": { "type": "purelane-pillars", "settings": {} },
+    "proof": { "type": "purelane-proof", "settings": {} },
+    "why": { "type": "purelane-why", "settings": {} },
+    "categories": { "type": "purelane-categories", "settings": {} },
+    "trust": { "type": "purelane-trust", "settings": {} },
+    "club": { "type": "purelane-club", "settings": {} }
+  },
+  "order": ["announcement", "hero", "reviews", "ingredients", "pillars", "proof", "combos", "why", "categories", "trust", "club"]
+}

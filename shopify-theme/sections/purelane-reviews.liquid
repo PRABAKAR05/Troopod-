@@ -1,0 +1,204 @@
+{% comment %}
+  PURELANE REVIEWS MARQUEE SECTION
+  Each review is a schema block editable from Theme Editor.
+  The marquee duplicates review cards via Liquid (no JS duplication).
+  Pauses on hover/focus. Respects prefers-reduced-motion.
+{% endcomment %}
+
+<section
+  class="sec purelane-revband"
+  id="reviews"
+  data-scene="1"
+  data-section-type="purelane-reviews"
+  data-section-id="{{ section.id }}"
+>
+  <div class="wrap">
+    <div class="purelane-revhead rv">
+      <span class="kicker">{{ section.settings.kicker | default: "That's what they said" }}</span>
+      <span class="agg">
+        <span class="st" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+        <b>{{ section.settings.aggregate_rating | default: '4.8' }}</b>
+        from {{ section.settings.review_count | default: '8,000+' }} reviews
+      </span>
+      <span class="agg">Loved by <b>{{ section.settings.homes_count | default: '12 lakh+' }}</b> homes</span>
+    </div>
+  </div>
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="purelane-revrail rv" aria-label="Customer reviews" role="region">
+      {%- comment -%} Duplicate blocks array twice for seamless infinite loop {%- endcomment -%}
+      <div class="purelane-revtrack">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review' -%}
+            <article class="glass-2 rcard" {{ block.shopify_attributes }}>
+              <div class="st" aria-label="{{ block.settings.rating | default: 5 }} out of 5 stars">
+                {%- assign stars = block.settings.rating | default: 5 | times: 1 -%}
+                {%- for i in (1..stars) -%}&#9733;{%- endfor -%}
+              </div>
+              <h5>{{ block.settings.title | escape }}</h5>
+              <p>{{ block.settings.body | escape }}</p>
+              <div class="who">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+                <b>{{ block.settings.reviewer | escape }}</b>
+                {%- if block.settings.product_label != blank -%}
+                  <span>&middot; {{ block.settings.product_label | escape }}</span>
+                {%- endif -%}
+              </div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- comment -%} Duplicate for infinite marquee {%- endcomment -%}
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'review' -%}
+            <article class="glass-2 rcard" aria-hidden="true">
+              <div class="st">
+                {%- assign stars = block.settings.rating | default: 5 | times: 1 -%}
+                {%- for i in (1..stars) -%}&#9733;{%- endfor -%}
+              </div>
+              <h5>{{ block.settings.title | escape }}</h5>
+              <p>{{ block.settings.body | escape }}</p>
+              <div class="who">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg>
+                <b>{{ block.settings.reviewer | escape }}</b>
+                {%- if block.settings.product_label != blank -%}
+                  <span>&middot; {{ block.settings.product_label | escape }}</span>
+                {%- endif -%}
+              </div>
+            </article>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Purelane Reviews",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "kicker",
+      "label": "Kicker text",
+      "default": "That's what they said"
+    },
+    {
+      "type": "text",
+      "id": "aggregate_rating",
+      "label": "Aggregate rating",
+      "default": "4.8"
+    },
+    {
+      "type": "text",
+      "id": "review_count",
+      "label": "Number of reviews",
+      "default": "8,000+"
+    },
+    {
+      "type": "text",
+      "id": "homes_count",
+      "label": "Homes count",
+      "default": "12 lakh+"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Review title",
+          "default": "Works like a charm"
+        },
+        {
+          "type": "textarea",
+          "id": "body",
+          "label": "Review text",
+          "default": "Finally an eco option that cleans as well as the chemical detergent I used for years."
+        },
+        {
+          "type": "text",
+          "id": "reviewer",
+          "label": "Reviewer name",
+          "default": "Anita"
+        },
+        {
+          "type": "text",
+          "id": "product_label",
+          "label": "Product / category label",
+          "default": "Laundry detergent"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Purelane Reviews",
+      "blocks": [
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Works like a charm",
+            "body": "Finally an eco option that cleans as well as the chemical detergent I used for years, and it smells better.",
+            "reviewer": "Anita",
+            "product_label": "Laundry detergent"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Best dishwash ever",
+            "body": "Our old dishwash left my help with dry, cracked skin. That stopped completely after we switched.",
+            "reviewer": "Priya",
+            "product_label": "Dishwash gel"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Great product, great packaging",
+            "body": "Very soft on hands with a lovely fragrance, and it feels good to be using far less plastic.",
+            "reviewer": "Sunita",
+            "product_label": "Liquid handwash"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Dog friendly",
+            "body": "We switched because chemical floor cleaners were setting off my dog's allergies. No reactions since.",
+            "reviewer": "Rohit S.",
+            "product_label": "Floor cleaner"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "rating": 5,
+            "title": "Sparkling taps again",
+            "body": "Hard water had ruined our bathroom fittings. Two sprays and the scale wipes straight off, no scrubbing.",
+            "reviewer": "Verified buyer",
+            "product_label": "Tap cleaner"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
